@@ -1,0 +1,83 @@
+#Домашнее задание 1
+import os #Данная библиотека необходима для 6 номера
+#Функции:
+def cmp(f): #К номеру 2
+    i = 0
+    while(items[i] != f):
+        i += 1
+    return i
+
+def pointnumber(s): #К номеру 5
+    sum = 0
+    for c in s:
+        if (c == '.'):
+            sum += 1
+    return sum
+
+def find(s1, s2): #К номеру 6
+    ans = 0
+    for s3 in s2:
+        if (s3 == s1):
+            ans += 1
+    return ans
+
+#Номер 1
+print("Номер 1:")
+
+arr = dir(Exception)
+for i in arr:
+    print(i)
+    
+
+#Номер 2
+print("\nНомер 2:")
+
+items = [0, 3, 2, 4, 6, 5, 8, 9, 7, 1]
+shuffled_items = [1, 3, 4, 5, 2, 9, 8, 7, 6, 0]
+
+shuffled_items = sorted(shuffled_items, key=cmp)
+
+for i in shuffled_items:
+    print(i)
+
+#Номер 3
+print("\nНомер 3:")
+
+first = 'a b c d e f g r t y q'.split(' ')
+second = '1 2 3 4 5 6 7 100 19 181 17'.split(' ')
+arr = list(zip(first, second))
+for i in enumerate(arr):
+    print(i)
+    
+#Номер 4
+print("\nНомер 4:")
+
+array = [x for x in range(1, 101)]
+print(array)
+
+#Номер 5
+print("\nНомер 5:")
+
+str_arr = ['agfkd.,f', 'Qksdf;sb&..', 'asdoo*', 'bgf...d', 're54()kj[]].']
+point_sum = list(map(lambda x: pointnumber(x), str_arr))
+
+print(point_sum)
+
+new_arr = ['.', 'i.i..', 'proso......', '', 'oert', 'tryet..rer.er.rre.', 'costa.i,u..']
+new_arr2 = list(filter(lambda x: pointnumber(x) > 2, new_arr))
+
+print(new_arr2)
+
+#Номер 6
+print("\nНомер 6:")
+
+files = ["D:/Виктор/DL School/" + x for x in os.listdir("D:/Виктор/DL School")]
+print(files)
+for file in files:
+    f1 = open(file, "r")
+    str = f1.read().split()
+    d = dict.fromkeys(str, 0)
+    for s in str:
+        d[s] = find(s, str)
+    print(d)
+    f1.close()
