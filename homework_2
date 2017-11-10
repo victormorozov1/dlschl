@@ -1,0 +1,151 @@
+import numpy as np
+import random
+import scipy.stats as sps
+import time
+
+# Для генерации матриц используем фукнцию random -- она используется для генерации случайных объектов 
+# функция sample создает случайную выборку. В качестве аргумента ей передается кортеж (i,j), здесь i -- число строк,
+# j -- число столбцов.
+a = np.random.sample((3,3))
+b = np.random.sample((3,3))
+# выведите размерность (ранг) каждой матрицы с помощью функции ndim.
+print("Ранг матрицы а = ", np.ndim(a))
+print("Ранг матрицы b = ", np.ndim(b))
+# Используйте функцию shape, что она вывела?
+print(np.shape(a), "- Это количество строк и столбцов 1 маматрицы")
+print(np.shape(b), "- Это количество строк и столбцов 2 матрицы")
+# ========
+# тут можно писать код 
+# ========
+print(a)
+print(b)
+
+def F(x, y, mm1, nn2):
+    sum = 0
+    for i in range(0, min(mm1, nn2)):
+        sum += a[x][i] * b[i][y]
+    return sum
+
+def mult(a, b):
+    # здесь напишите перемножение матриц без 
+    # использования NumPy и выведите результат 
+    
+    result  = np.random.sample((3,3))
+    
+    nn1 = np.shape(a)[0]
+    mm1 = np.shape(a)[1]
+    
+    nn2 = np.shape(b)[0]
+    mm2 = np.shape(b)[1]
+    
+    for i in range(0, nn1):
+        for j in range(0, mm2):
+            result[i][j] = F(i, j, mm1, nn2)
+
+    for i in range(0, nn1):
+        s = ""
+        for j in range(0, mm2):
+            s += str(result[i][j]) + " "
+        print(s)
+
+
+time1 = time.clock() #Я использую функцию time.clock() так как %%time у меня не работает
+mult(a, b)
+print("Время работы программы - ",time.clock() - time1)
+
+def np_mult(a, b):
+    # здесь напишите перемножение матриц с
+    # использованием NumPy и выведите результат
+    result  = np.random.sample((3,3))
+    
+    nn1 = np.shape(a)[0]
+    mm1 = np.shape(a)[1]
+    
+    nn2 = np.shape(b)[0]
+    mm2 = np.shape(b)[1]
+    
+    for i in range(0, nn1):
+        for j in range(0, mm2):
+            result[i][j] = np.array(a[i, :] * b[:, i]).sum()
+
+    print(result)
+    
+time1 = time.clock() #Я использую функцию time.clock() так как %%time у меня не работает
+np_mult(a, b)
+print("Время работы программы - ",time.clock() - time1)
+
+
+# функция, решающая задачу с помощью NumPy
+def sec_av(A): # Не смог сделать
+    # Ваш код здесь
+    pass
+    
+    
+    
+# функция без NumPy
+def stupid_sec_av(ar):
+    sum = 0
+    for i in range(0, len(ar)):
+        sum += ar[i]
+        ar[i] = sum / (i + 1)
+    return ar
+    
+    
+time1 = time.clock()
+print(stupid_sec_av(np.array([0.0, 2.0, 1.0, 3.0, 98.0])))
+print("Время работы программы", time.clock() - time1)
+
+
+# функция, решающая задачу с помощью NumPy
+def transformation(X, a=1): #не смог сделать
+    # Ваш код здесь
+    return Y
+    
+    
+    
+# функция, решающая задачу  без NumPy
+def stupid_transformation(X, a): 
+    # Ваш код здесь
+    R = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0]
+    Y = X
+    
+    for i in range(0, len(X)):
+        R[i] = X[i]
+    
+    # 1 часть (Индексация с нуля)
+
+    i = 1
+
+    while (i < len(Y)):
+        Y[i] = a
+        i += 2
+        
+
+    # 2 часть
+    i = 0
+    while (i < len(X)):
+        Y[i] *= Y[i]
+        i += 2
+
+    i = 0
+    while (i < len(X) / 2):
+        d = Y[i]
+        Y[i] = Y[len(Y) - i - 2]
+        Y[len(Y) - i - 2] = d
+        i += 2
+   
+    # 3 часть
+    
+    
+    
+        
+    
+    for i in range(0, len(Y)):
+        R[len(X) - 1 + i] = Y[i]
+    
+    return R
+
+
+
+a = np.array([0, 1, 2, 3, 4, 5])
+stupid_transformation(a, 3)
